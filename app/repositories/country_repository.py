@@ -1,6 +1,6 @@
-from db_connection import db
+from app.db.mongo import db
 import asyncio
-from country_factory import create_country_objects
+from app.services.country_factory import create_country_objects
 from pymongo import UpdateOne
 
 countries = db["countries"]
