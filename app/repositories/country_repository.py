@@ -18,9 +18,11 @@ async def upsert_country_data(country_objects: List[CountryData]) -> None:
         print(f"Upserted {result.upserted_count} documents, Modified {result.modified_count} documents.")
 
 async def get_all_countries() -> list[dict]:
+    print("Querying MongoDB now...")
     return list(countries.find({}, {"_id": 0}))
 
 def get_country_by_name(country_name: str) -> CountryData | None:
+    print("Querying MongoDB now...")
     result = countries.find_one({"name": {"$regex": f"^{country_name}$", "$options": "i"}}, {"_id": 0})
     if result:
         return CountryData(**result)

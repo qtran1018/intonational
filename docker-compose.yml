@@ -6,6 +6,14 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    networks:
+      - travelplatform-network
 
 volumes:
   mongo_data:
+
+networks:
+  travelplatform-network:
+    external: true
+
+  
