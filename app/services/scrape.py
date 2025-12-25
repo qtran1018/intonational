@@ -117,7 +117,12 @@ def get_country_data(links):
             
             currency_entry = soup.find_all("div", class_="tsg-rwd-qf-box-data")[4].get_text(strip=True)
             currency_exit = soup.find_all("div", class_="tsg-rwd-qf-box-data")[5].get_text(strip=True)
-            currency_restrictions = currency_entry + ". " + currency_exit
+
+            # AI recommened fix because mine is too "hacky" and doesn't catch mulitple-period edge cases.
+            currency_restrictions = ". ".join(s.strip(".") for s in [currency_entry, currency_exit]) + "."
+            
+            # currency_restrictions = currency_entry + ". " + currency_exit + "."
+            # currency_restrictions = currency_restrictions.replace("..", ".")
 
         data = {
             "name": name,

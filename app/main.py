@@ -1,11 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 from app.routes import api, web
-from app.db_connection import db
+from app.db.mongo import db
+from app.repositories.country_repository import get_all_countries
 
 app = FastAPI()
-# app.include_router(api.router, prefix="/api")
-# app.include_router(web.router)
+app.include_router(api.router)
+templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/")
 async def root():
-    return {"message": "Hello world!"}
+    countries = await get_all_countries()
+    return templates.TemplateResponse("index.html", {"request": Request, "countries": countries})   

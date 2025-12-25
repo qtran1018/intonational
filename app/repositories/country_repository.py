@@ -1,12 +1,10 @@
 from app.db.mongo import db
-import asyncio
-from app.services.country_factory import create_country_objects
+from app.models.country import CountryData
 from pymongo import UpdateOne
+from typing import List
 
 countries = db["countries"]
-async def upsert_country_data():
-    country_objects = await create_country_objects()
-
+async def upsert_country_data(country_objects: List[CountryData]) -> None:
     operations =  [
         UpdateOne(
             {"name": country.name},
@@ -18,3 +16,13 @@ async def upsert_country_data():
     if operations:
         result = countries.bulk_write(operations)
         print(f"Upserted {result.upserted_count} documents, Modified {result.modified_count} documents.")
+
+async def get_all_countries() -> list[dict]:
+    return list(countries.find({}, {"_id": 0}))
+
+def get_country_by_name(country_name: str) -> CountryData | None:
+    result = countries.find_one({"name": {"$regex": f"^{country_name}$", "$options": "i"}}, {"_id": 0})
+    if result:
+        return CountryData(**result)
+    return None
+    
