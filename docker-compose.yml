@@ -15,5 +15,3 @@ volumes:
 networks:
   travelplatform-network:
     external: true
-
-  
