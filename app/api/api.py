@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 # from app.db.mongo import db
-from app.repositories.country_repository import get_all_countries, get_country_by_name
+from app.advisories.repository import get_all_countries, get_country_by_name
 from typing import List
-from app.models.country import CountryData
+from app.advisories.model import CountryData
 
 router = APIRouter(prefix="/countries", tags=["Countries"])
 

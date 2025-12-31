@@ -1,5 +1,5 @@
-from app.models.country import CountryData
-from app.services.scrape import do_scrape
+from app.advisories.model import CountryData
+from app.advisories.scrape import do_scrape
 
 async def create_country_objects():
     country_data_dicts = await do_scrape()

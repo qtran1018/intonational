@@ -1,5 +1,5 @@
 from app.db.mongo import db
-from app.models.country import CountryData
+from app.advisories.model import CountryData
 from pymongo import UpdateOne
 from typing import List
 

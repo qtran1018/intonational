@@ -1,5 +1,5 @@
-from app.services.country_factory import create_country_objects
-from app.repositories.country_repository import upsert_country_data
+from app.advisories.model_maker import create_country_objects
+from app.advisories.repository import upsert_country_data
 # import asyncio
 
 async def run_country_pipeline():
