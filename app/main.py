@@ -1,15 +1,16 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
-from app.api import api, web
 from app.db.mongo import db
-from app.advisories.repository import get_all_countries
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from app.shared.http import http_client
+import httpx
 
 app = FastAPI()
-app.include_router(api.router)
-templates = Jinja2Templates(directory="app/templates")
 
-@app.get("/")
-async def root():
-    countries = await get_all_countries()
-    return templates.TemplateResponse("index.html", {"request": Request, "countries": countries})   
+@app.on_event("startup")
+async def startup():
+    global http_client
+    http_client = httpx.AsyncClient(timeout=10)
+
+@app.on_event("shutdown")
+async def shutdown():
+    await http_client.aclose()
