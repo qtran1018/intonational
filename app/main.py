@@ -1,16 +1,15 @@
-from app.db.mongo import db
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from app.shared.http import http_client
-import httpx
+from contextlib import asynccontextmanager
+from app.shared.http import init_client, close_client
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_client()  # startup
+    yield
+    await close_client()  # shutdown
 
-@app.on_event("startup")
-async def startup():
-    global http_client
-    http_client = httpx.AsyncClient(timeout=10)
+app = FastAPI(lifespan=lifespan)
 
-@app.on_event("shutdown")
-async def shutdown():
-    await http_client.aclose()
+# include routers here
+from app.geocoding.routes import router as geocode_router
+app.include_router(geocode_router)

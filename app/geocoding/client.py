@@ -1,11 +1,10 @@
-from app.shared.http import http_client
+from app.shared.http import get_client
 
 GEOCODER_URL = "https://geocoding-api.open-meteo.com/v1/search"
 async def get_geocode(search_city: str):
-    if http_client is None:
-        raise RuntimeError("HTTP client not initialized")
+    client = get_client()
     
-    response = await http_client.get(
+    response = await client.get(
         GEOCODER_URL,
         params={
             "name": search_city,
