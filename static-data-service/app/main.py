@@ -11,5 +11,5 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # include routers here
-from app.geocoding.routes import router as geocode_router
-app.include_router(geocode_router)
+from app.api.v1.routes import router as static_data_router
+app.include_router(static_data_router)

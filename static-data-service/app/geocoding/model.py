@@ -9,4 +9,3 @@ class GeoData(BaseModel):
     country_code: Optional[str] = Field(None, description="2 character ISO-3166-1 alpha2 ")
     latitude: float = Field(..., description="Geographical WGS84 coordinates of this location")
     longitude: float = Field(..., description="Geographical WGS84 coordinates of this location")
-

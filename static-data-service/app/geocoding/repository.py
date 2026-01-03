@@ -2,7 +2,7 @@ from app.shared.db.mongo import db
 from datetime import datetime, timezone
 
 geocodes = db["geocodes"]
-geocodes.create_index([("inserted_on", 1)], expireAfterSeconds=31536000)
+geocodes.create_index([("inserted_on", 1)], expireAfterSeconds=31536000) #1 year expiry
 
 async def query_city(search_city: str):
     return geocodes.find_one({"search_term":search_city.strip().lower()})
