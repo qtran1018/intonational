@@ -11,15 +11,18 @@ async def search_place(search_term: str) -> List[GeoData]:
     
     #check db for documents with search term
     cached = await query_city(term)
-    if cached:
+    if cached and len(cached["results"]) <= 20:
+        print("IN CACHE")
         results = cached["results"]
 
     #no results from db. call open-meteo, save the results to db
     else:
+        print("NOT IN CACHE")
         raw = await get_geocode(term)
         results = raw.get("results", [])
         if results:
             await save_results(term, results)
+            print("NOW IN CACHE")
     
     #make a list of geodata objects to validate and return
     geo_data_objects = [make_geo_model(geodata) for geodata in results]

@@ -10,7 +10,7 @@ async def get_geocode(search_city: str):
             "name": search_city,
             "language": "en",
             "format": "json",
-            "count": 15
+            "count": 20
         }
     )
     response.raise_for_status()
