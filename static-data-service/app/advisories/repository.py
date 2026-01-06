@@ -1,14 +1,22 @@
 from app.shared.db.mongo import db
 from pymongo import UpdateOne
 from typing import List
+from datetime import datetime, timezone
 from app.advisories.model import CountryData
 
 advisories = db["country_advisories"]
+advisories.create_index([("inserted_on", 1)], expireAfterSeconds=15768000) #6 month expiry
+
 async def upsert_country_data(country_objects: List[CountryData]) -> None:
     operations =  [
         UpdateOne(
             {"name": country.name},
-            {"$set": country.model_dump()},
+            {
+                "$set": country.model_dump(),
+                "$setOnInsert": {
+                    "inserted_on": datetime.now(timezone.utc)
+                }
+            },
             upsert=True
         )
         for country in country_objects
