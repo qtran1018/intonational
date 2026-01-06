@@ -1,7 +1,9 @@
 from app.shared.db.mongo import db
+from app.weather_historical.model import HistoricalWeather
 from datetime import datetime, timezone
 
 historical_weather = db["historical_weather"]
+historical_weather.create_index([("inserted_on", 1)], expireAfterSeconds=31536000) #1 year expiry
 
 async def query_weather(lat: float, lon: float, month: int):
     return historical_weather.find_one(
@@ -12,14 +14,16 @@ async def query_weather(lat: float, lon: float, month: int):
         })
 
 #TODO: save_weather needs complete remake, below is geocode
-async def save_weather(search_city: str, results: list):
-    document = {
-        "search_term": search_city.strip().lower(),
-        "results": results,
-        "inserted_on": datetime.now(timezone.utc)
-    }
+async def save_weather(weather_obj: HistoricalWeather):
+    document = weather_obj.model_dump()
+    document["inserted_on"] = datetime.now(timezone.utc)
+
     historical_weather.replace_one(
-        {"search_term": search_city}, 
+        {
+            "latitude": weather_obj.latitude,
+            "longitude": weather_obj.longitude,
+            "month": weather_obj.month,
+        },
         document,
         upsert=True)
-    print(f"Document for {search_city} inserted or updated.")
+    print(f"Document inserted or updated.")

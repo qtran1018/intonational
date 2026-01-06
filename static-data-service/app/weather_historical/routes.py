@@ -3,9 +3,9 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from app.weather_historical.service import search_weather
 
-router = APIRouter(prefix="/historical-weather", tags=["Historical Weather"])
+router = APIRouter(tags=["Historical Weather"])
 
-@router.get("/")
+@router.get("/historical-weather")
 async def historical_weather_endpoint(lat: float, lon: float, month: int):
     weather = await search_weather(lat, lon, month)
     return weather

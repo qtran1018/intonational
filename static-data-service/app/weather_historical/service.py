@@ -1,6 +1,7 @@
 from datetime import date
 from calendar import monthrange
 import statistics
+from app.weather_historical.model import HistoricalWeather
 from app.weather_historical.client import get_historical_weather
 from app.weather_historical.repository import query_weather, save_weather
 from app.weather_historical.model_maker import make_weather_model, make_temp_stats
@@ -14,8 +15,11 @@ async def search_weather(lat: float, lon: float, month: int):
     cached = await query_weather(lat, lon, month)
 
     if cached:
-        return cached
+        print("IN CACHE")
+        cached.pop("_id", None)
+        return HistoricalWeather.model_validate(cached)
     else:
+        print("NOT IN CACHE")
         current_year = date.today().year
         current_month = date.today().month
 
@@ -44,11 +48,17 @@ async def search_weather(lat: float, lon: float, month: int):
         high_mean = statistics.mean(high_temps)
         high_median = statistics.median(high_temps)
         high_stats_obj = make_temp_stats(high_mean, high_median)
-        low_stats_obj = make_temp_stats(low_mean, low_median)
 
         low_temps = results["daily"]["temperature_2m_min"]
         low_mean = statistics.mean(low_temps)
         low_median = statistics.median(low_temps)
+        low_stats_obj = make_temp_stats(low_mean, low_median)
 
         weather_object = make_weather_model(lat, lon, month, save_year, high_stats_obj, low_stats_obj)
+        await save_weather(weather_object)
+        print("NOW IN CACHE")
+
+    return weather_object
+
+
 
