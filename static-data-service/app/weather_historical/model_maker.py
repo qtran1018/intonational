@@ -7,7 +7,6 @@ def make_temp_stats(mean: float, median: float) -> TempStats:
         median = median
     )
 
-#TODO sunrise sunset median
 def make_weather_model(
     lat: float, 
     lon: float, 
@@ -24,5 +23,4 @@ def make_weather_model(
         year = year,
         temp_high = temp_highs,
         temp_low = temp_lows,
-        calculated_on = datetime.now(timezone.utc)
     )

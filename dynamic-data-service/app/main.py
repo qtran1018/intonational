@@ -11,5 +11,5 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # include routers here
-from app.api.v1.routes import router as aggregator_router
-app.include_router(aggregator_router)
+from app.api.v1.routes import router as dynamic_data_router
+app.include_router(dynamic_data_router)

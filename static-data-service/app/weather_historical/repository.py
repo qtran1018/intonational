@@ -13,7 +13,6 @@ async def query_weather(lat: float, lon: float, month: int):
             "month": month
         })
 
-#TODO: save_weather needs complete remake, below is geocode
 async def save_weather(weather_obj: HistoricalWeather):
     document = weather_obj.model_dump()
     document["inserted_on"] = datetime.now(timezone.utc)

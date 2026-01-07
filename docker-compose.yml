@@ -1,5 +1,5 @@
 services:
-  database:
+  mongodb:
     image: mongo:latest
     container_name: mongodb_container
     ports:
@@ -8,6 +8,25 @@ services:
       - mongo_data:/data/db
     networks:
       - travelplatform-network
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - travelplatform-network
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
 
 volumes:
   mongo_data:
