@@ -4,38 +4,55 @@ intonational
 ├─ aggregator-service
 │  └─ app
 │     ├─ api
+│     │  ├─ v1
+│     │  │  ├─ routes.py
+│     │  │  └─ __init__.py
+│     │  └─ __init__.py
 │     ├─ clients
 │     │  ├─ dynamic_client.py
 │     │  └─ static_client.py
-│     ├─ http.py
 │     ├─ main.py
 │     ├─ models
 │     │  └─ aggregator_model.py
 │     ├─ routes
 │     │  └─ routes.py
-│     └─ services
-│        └─ aggregator_service.py
+│     ├─ services
+│     │  └─ aggregator_service.py
+│     └─ shared
+│        ├─ http.py
+│        └─ utils
+│           └─ wmo_converter.py
 ├─ docker-compose.yml
 ├─ dynamic-data-service
 │  ├─ app
+│  │  ├─ api
+│  │  │  ├─ v1
+│  │  │  │  ├─ routes.py
+│  │  │  │  └─ __init__.py
+│  │  │  └─ __init__.py
 │  │  ├─ fx_rates
 │  │  │  ├─ client.py
 │  │  │  ├─ model.py
 │  │  │  ├─ model_maker.py
+│  │  │  ├─ repository.py
 │  │  │  ├─ routes.py
 │  │  │  ├─ service.py
 │  │  │  └─ __init__.py
 │  │  ├─ main.py
 │  │  ├─ shared
+│  │  │  ├─ http.py
 │  │  │  ├─ redis
 │  │  │  │  ├─ connection.py
 │  │  │  │  ├─ redis_repository.py
 │  │  │  │  └─ __init__.py
+│  │  │  ├─ utils
+│  │  │  │  └─ cache_keygen.py
 │  │  │  └─ __init__.py
 │  │  ├─ weather_forecast
 │  │  │  ├─ client.py
 │  │  │  ├─ model.py
 │  │  │  ├─ model_maker.py
+│  │  │  ├─ repository.py
 │  │  │  ├─ routes.py
 │  │  │  ├─ service.py
 │  │  │  └─ __init__.py
