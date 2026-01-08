@@ -5,8 +5,8 @@ from typing import List
 def make_weather_forecast_model(
     lat: float,
     lon: float,
-    date: List[date],
-    weather_code: int,
+    dates: List[date],
+    weather_code: List[int],
     temp_high: List[float],
     temp_low: List[float],
     temp_high_apparent: List[float],
@@ -18,7 +18,7 @@ def make_weather_forecast_model(
     return WeatherForecast(
         latitude = lat,
         longitude = lon,
-        date = date,
+        dates = dates,
         weather_code = weather_code,
         temp_high = temp_high,
         temp_low = temp_low,
