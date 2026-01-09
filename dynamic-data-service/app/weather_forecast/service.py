@@ -10,11 +10,11 @@ async def search_weather(lat: float, lon: float):
     cached = await query_weather(lat, lon)
 
     if cached:
-        logger.info("Weather cache hit for %s,%s", lat, lon)
+        logger.info("Weather cache HIT for %s,%s", lat, lon)
         return cached
     
     else:
-        logger.info("Weather cache miss for %s,%s", lat, lon)
+        logger.info("Weather cache MISS for %s,%s", lat, lon)
         raw = await get_weather_forecast(lat, lon)
         weather_obj = make_weather_forecast_model(
             lat,
