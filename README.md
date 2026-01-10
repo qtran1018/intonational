@@ -1,4 +1,4 @@
-```
+
 # Travel Platform Backend
 
 A **microservices-based backend** built with **FastAPI** that aggregates static and dynamic travel-related data into a unified API. The platform is designed with clean architecture principles, Redis caching, and external API integrations, mirroring patterns used in production backend systems.
@@ -147,7 +147,7 @@ Benefits:
 * Significant reduction in external API calls
 * Better fault tolerance when third-party APIs are unavailable
 
-```
+
 
 Each service will be exposed on its own port and documented via FastAPI's built-in Swagger UI.
 
@@ -182,6 +182,3 @@ This project emphasizes:
 
 The goal is to mirror how production travel and data platforms are architected in industry.
 
-```
-
-```
