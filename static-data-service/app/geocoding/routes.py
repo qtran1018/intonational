@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from app.geocoding.service import search_place
+from app.geocoding.model import GeoData
 
 router = APIRouter(tags=["Geocoding"])
 

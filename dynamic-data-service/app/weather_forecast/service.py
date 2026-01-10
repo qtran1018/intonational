@@ -19,6 +19,7 @@ async def search_weather(lat: float, lon: float):
         weather_obj = make_weather_forecast_model(
             lat,
             lon,
+            #TODO probably make these a sub model and nest similar to historical weather
             raw["daily"]["time"],
             raw["daily"]["weather_code"],
             raw["daily"]["temperature_2m_max"],

@@ -6,7 +6,7 @@ async def get_advisories(country_name: str):
     response = await client.get(
         ADVISORIES_DATA_URL,
         params={
-            "country_name": country_name,
+            "country_name": country_name, #TODO need to make lower? Lower in advisories too?
         }
     )
     response.raise_for_status()
