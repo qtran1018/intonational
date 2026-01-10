@@ -20,9 +20,9 @@ A **microservices-based backend** built with **FastAPI** that aggregates static 
 
 The backend is organized into multiple services, each responsible for a single domain. Services communicate via HTTP and share common infrastructure patterns.
 
-```
 
-```
+
+
 
 ---
 
