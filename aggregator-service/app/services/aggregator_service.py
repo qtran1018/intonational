@@ -22,6 +22,7 @@ async def search_aggregate(search_city: str, month: int):
         lon = geodata["longitude"]
         admin1 = geodata["admin1"]
         year = datetime.now(timezone.utc).year #TODO Check if this is needed.
+        country = geodata["country"]
         country_code = geodata["country_code"]
 
         #TODO: advisories, may need some type of mapping
@@ -33,20 +34,25 @@ async def search_aggregate(search_city: str, month: int):
         temp_high_mean = historical_weather["temp_high"]["mean"]
         temp_high_median = historical_weather["temp_high"]["median"]
         temp_low_mean = historical_weather["temp_low"]["mean"]
-        temp_low_median = historical_weather["temp_high"]["median"]
+        temp_low_median = historical_weather["temp_low"]["median"]
+        weather_code_mode = historical_weather["weather_code_mode"]
 
         temp_stats_highs = make_temp_stats(temp_high_mean, temp_high_median) # INCLUDE INTO AGGREGATE MODEL
         temp_stats_lows = make_temp_stats(temp_low_mean, temp_low_median)
 
         #ADVISORIES
-        advisories = get_advisories(country_name)
+
+        #TODO: may need some mapping. openmeteo geocode country names may not match advisory names
+        
+        #advisories = get_advisories(country)
 
         #WEATHER FORECAST
         weather_forecast = get_weaather_forecast(lat, lon)
 
         
         #FX Rates
-        fx_rates = get_fx()
+        fx_rates = get_fx() #gets all FX rates.
+
 
         
 
