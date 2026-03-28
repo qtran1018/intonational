@@ -1,10 +1,10 @@
 from datetime import date
 from calendar import monthrange
+from collections import Counter
 import statistics
 from app.weather_historical.model import HistoricalWeather
 from app.weather_historical.client import get_historical_weather
 from app.weather_historical.repository import query_weather, save_weather
-from app.weather_historical.model_maker import make_weather_model, make_temp_stats
 
 
 async def search_weather(lat: float, lon: float, month: int):
@@ -54,7 +54,16 @@ async def search_weather(lat: float, lon: float, month: int):
         low_median = statistics.median(low_temps)
         low_stats_obj = make_temp_stats(low_mean, low_median)
 
-        weather_object = make_weather_model(lat, lon, month, save_year, high_stats_obj, low_stats_obj)
+        humidity = results["daily"]["relative_humidity_2m_mean"]
+        humidity_mean = statistics.mean(humidity)
+        humidity_median = statistics.median(humidity)
+        humidity_stats_obj = make_temp_stats(humidity_mean, humidity_median)
+        
+        weather_codes = results["daily"]["weather_code"]
+        counter = Counter(weather_codes)
+        weather_code_mode = counter.most_common(1)[0][0] #doesn't account for ties
+
+        weather_object = make_weather_model(lat, lon, month, save_year, high_stats_obj, low_stats_obj, humidity_stats_obj, weather_code_mode)
         await save_weather(weather_object)
         print("NOW IN CACHE")
 
