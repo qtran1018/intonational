@@ -44,25 +44,6 @@ async def search_weather(lat: float, lon: float, month: int):
         
         results = await get_historical_weather(lat, lon, start_date_string, end_date_string)
 
-        high_temps = results["daily"]["temperature_2m_max"]
-        high_mean = statistics.mean(high_temps)
-        high_median = statistics.median(high_temps)
-        high_stats_obj = make_temp_stats(high_mean, high_median)
-
-        low_temps = results["daily"]["temperature_2m_min"]
-        low_mean = statistics.mean(low_temps)
-        low_median = statistics.median(low_temps)
-        low_stats_obj = make_temp_stats(low_mean, low_median)
-
-        humidity = results["daily"]["relative_humidity_2m_mean"]
-        humidity_mean = statistics.mean(humidity)
-        humidity_median = statistics.median(humidity)
-        humidity_stats_obj = make_temp_stats(humidity_mean, humidity_median)
-        
-        weather_codes = results["daily"]["weather_code"]
-        counter = Counter(weather_codes)
-        weather_code_mode = counter.most_common(1)[0][0] #doesn't account for ties
-
         weather_object = make_weather_model(lat, lon, month, save_year, high_stats_obj, low_stats_obj, humidity_stats_obj, weather_code_mode)
         await save_weather(weather_object)
         print("NOW IN CACHE")
