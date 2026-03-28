@@ -14,7 +14,17 @@ async def get_historical_weather(lat: float, lon: float, start_date_string: str,
             "longitude": lon,
             "start_date": start_date_string,
             "end_date": end_date_string,
-            "daily": ["temperature_2m_max", "temperature_2m_min"],
+            "daily": 
+                [
+                    "temperature_2m_max",
+                    "temperature_2m_min",
+                    "weather_code",
+                    "apparent_temperature_max",
+                    "apparent_temperature_min",
+                    "relative_humidity_2m_mean",
+                    "precipitation_sum",
+                    "wind_speed_10m_mean"
+                ],
         }
     )
     response.raise_for_status()

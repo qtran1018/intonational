@@ -9,7 +9,15 @@ async def get_weather_forecast(lat: float, lon: float):
         params = {
             "latitude": lat,
             "longitude": lon,
-            "daily": ["temperature_2m_max", "temperature_2m_min", "apparent_temperature_max", "apparent_temperature_min", "precipitation_probability_max" ,"wind_speed_10m_max", "weather_code"],
+            "daily": [
+                "temperature_2m_max",
+                "temperature_2m_min",
+                "apparent_temperature_max",
+                "apparent_temperature_min",
+                "precipitation_probability_max",
+                "wind_speed_10m_max",
+                "weather_code",
+                "relative_humidity_2m_max"],
             "forecast_days": 14,
         }
     )
