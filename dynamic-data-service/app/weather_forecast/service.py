@@ -1,35 +1,23 @@
 from app.weather_forecast.repository import query_weather, save_weather
-from app.weather_forecast.model_maker import make_weather_forecast_model
 from app.weather_forecast.client import get_weather_forecast
+from app.weather_forecast.model import WeatherForecast
 import logging
 
-logger = logging.getLogger("weather")
+logger = logging.getLogger("weather_forecast")
 DEFAULT_TTL = 86400
 
 async def search_weather(lat: float, lon: float):
     cached = await query_weather(lat, lon)
 
     if cached:
-        logger.info("Weather cache HIT for %s,%s", lat, lon)
+        logger.info("Weather cache HIT for %s, %s", lat, lon)
         return cached
     
     else:
-        logger.info("Weather cache MISS for %s,%s", lat, lon)
-        raw = await get_weather_forecast(lat, lon)
-        weather_obj = make_weather_forecast_model(
-            lat,
-            lon,
-            #TODO probably make these a sub model and nest similar to historical weather
-            raw["daily"]["time"],
-            raw["daily"]["weather_code"],
-            raw["daily"]["temperature_2m_max"],
-            raw["daily"]["temperature_2m_min"],
-            raw["daily"]["apparent_temperature_max"],
-            raw["daily"]["apparent_temperature_min"],
-            raw["daily"]["precipitation_probability_max"],
-            raw["daily"]["wind_speed_10m_max"],
-        )
+        logger.info("Weather cache MISS for %s, %s", lat, lon)
+        results = await get_weather_forecast(lat, lon)
+        weather_obj = WeatherForecast.from_api_response(lat, lon, results)
         await save_weather(lat, lon, weather_obj, DEFAULT_TTL)
-        logger.info("Weather successfully cached for %s,%s", lat, lon)
+        logger.info("Weather successfully cached for %s, %s", lat, lon)
 
     return weather_obj
