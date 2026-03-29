@@ -1,9 +1,10 @@
 from playwright.async_api import async_playwright
 from bs4 import BeautifulSoup
-import requests
 import asyncio
-import time
 import csv
+import os
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
 async def do_scrape():
     links = await get_country_links()
@@ -47,7 +48,7 @@ async def get_country_links():
             await button.click()
             await asyncio.sleep(0.5)
 
-        with open('app/data/country_links.csv', 'w', newline='', encoding="utf-8") as csvfile:
+        with open(os.path.join(DATA_DIR, 'country_links.csv'), 'w', newline='', encoding="utf-8") as csvfile:
             writer = csv.writer(csvfile)
             for country, link in country_list.items():
                 writer.writerow([country, link])
@@ -64,10 +65,6 @@ async def get_country_data(links):
     # session.headers.update({
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
     # })
-
-    # Write to CSV file - another csv comment at the bottom
-    # with open('app/data/country_data.csv', 'w', newline='', encoding="utf-8") as csvfile:
-    #     writer = csv.writer(csvfile)
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -144,12 +141,16 @@ async def get_country_data(links):
             country_data.append(data)
             await page.close()
 
-            # Write to CSV
-            # writer.writerow([name, link, date, level, notes, visa, vaccinations, passport_requirements, currency_restrictions])
             await asyncio.sleep(1)
 
         await browser.close()
+
+    with open(os.path.join(DATA_DIR, 'country_data.csv'), 'w', newline='', encoding="utf-8") as csvfile:
+        writer = csv.writer(csvfile)
+        for d in country_data:
+            writer.writerow([d["name"], d["link"], d["date"], d["level"], d["notes"], d["visa"], d["vaccinations"], d["passport_requirements"], d["currency_restrictions"]])
+
     print("### All country data scraped ###")
     return country_data
 
-asyncio.run(do_scrape())
+#asyncio.run(do_scrape())

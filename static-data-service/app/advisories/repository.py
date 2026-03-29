@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 from app.advisories.model import CountryData
 
 advisories = db["country_advisories"]
-advisories.create_index([("inserted_on", 1)], expireAfterSeconds=15768000) #6 month expiry
 
 async def upsert_country_data(country_objects: List[CountryData]) -> None:
     operations =  [
