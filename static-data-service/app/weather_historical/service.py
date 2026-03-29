@@ -1,7 +1,5 @@
 from datetime import date
 from calendar import monthrange
-from collections import Counter
-import statistics
 from app.weather_historical.model import HistoricalWeather
 from app.weather_historical.client import get_historical_weather
 from app.weather_historical.repository import query_weather, save_weather
@@ -44,11 +42,8 @@ async def search_weather(lat: float, lon: float, month: int):
         
         results = await get_historical_weather(lat, lon, start_date_string, end_date_string)
 
-        weather_object = make_weather_model(lat, lon, month, save_year, high_stats_obj, low_stats_obj, humidity_stats_obj, weather_code_mode)
+        weather_object = HistoricalWeather.from_api_response(lat, lon, month, save_year, results)
         await save_weather(weather_object)
         print("NOW IN CACHE")
 
     return weather_object
-
-
-

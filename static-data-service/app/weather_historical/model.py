@@ -1,6 +1,6 @@
+from __future__ import annotations
 from pydantic import BaseModel, Field
 from datetime import datetime, timezone
-from __future__ import annotations
 import statistics
 
 
@@ -22,29 +22,37 @@ class TimePeriod(BaseModel):
 
     #Created inline, year is save_year when calculating which year to pull from.
 
-class TempStats(BaseModel):
+class DailyStats(BaseModel):
     mean: float = Field(..., description="Average daily stat")
     median: float = Field(..., description="Median daily stat")
 
     @classmethod
-    def from_values(cls, raw_daily_stat: list[float]) -> TempStats:
+    def from_values(cls, raw_daily_stat: list[float]) -> DailyStats:
         return cls(
             mean=statistics.mean(raw_daily_stat),
             median=statistics.median(raw_daily_stat)
         )
 
 class WeatherData(BaseModel):
-    temp_high: TempStats
-    temp_low: TempStats
-    humidity: TempStats
+    temp_high: DailyStats
+    temp_low: DailyStats
+    apparent_high: DailyStats
+    apparent_low: DailyStats
+    wind_speed: DailyStats
+    humidity: DailyStats
+    precipitation: float
     weather_code_mode: int
 
     @classmethod
     def from_raw(cls, raw_daily: dict[str, list]) -> WeatherData:
         return cls(
-            temp_high=TempStats.from_values(raw_daily["temperature_2m_max"]),
-            temp_low=TempStats.from_values(raw_daily["temperature_2m_min"]),
-            humidity=TempStats.from_values(raw_daily["relative_humidity_2m_mean"]),
+            temp_high=DailyStats.from_values(raw_daily["temperature_2m_max"]),
+            temp_low=DailyStats.from_values(raw_daily["temperature_2m_min"]),
+            apparent_high=DailyStats.from_values(raw_daily["apparent_temperature_max"]),
+            apparent_low=DailyStats.from_values(raw_daily["apparent_temperature_min"]),
+            wind_speed=DailyStats.from_values(raw_daily["wind_speed_10m_mean"]),
+            humidity=DailyStats.from_values(raw_daily["relative_humidity_2m_mean"]),
+            precipitation=statistics.mean(raw_daily["precipitation_sum"]),
             weather_code_mode=statistics.mode(raw_daily["weather_code"])
         )
 
@@ -64,5 +72,3 @@ class HistoricalWeather(BaseModel):
             weather_data=WeatherData.from_raw(raw_data["daily"])
 
         )
-    
-    
