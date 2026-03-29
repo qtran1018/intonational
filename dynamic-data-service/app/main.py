@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.shared.http import init_client, close_client
+from app.api.v1.routes import router as dynamic_data_router
 import logging
 
 # Only show WARNING+ for third-party libs
@@ -24,5 +25,4 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 # include routers here
-from app.api.v1.routes import router as dynamic_data_router
 app.include_router(dynamic_data_router)

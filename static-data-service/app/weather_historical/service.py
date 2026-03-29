@@ -3,7 +3,9 @@ from calendar import monthrange
 from app.weather_historical.model import HistoricalWeather
 from app.weather_historical.client import get_historical_weather
 from app.weather_historical.repository import query_weather, save_weather
+import logging
 
+logger = logging.getLogger("weather_historical")
 
 async def search_weather(lat: float, lon: float, month: int):
     #Should not be an issue. Frontend should limit choices
@@ -14,10 +16,11 @@ async def search_weather(lat: float, lon: float, month: int):
 
     if cached:
         print("IN CACHE")
-        cached.pop("_id", None)
-        return HistoricalWeather.model_validate(cached)
+        logger.info("Weather cache HIT for %s,%s,%s", lat, lon, month)
+        return cached
     else:
         print("NOT IN CACHE")
+        logger.info("Weather cache MISS for %s, %s ,%s", lat, lon, month)
         current_year = date.today().year
         current_month = date.today().month
 
@@ -45,5 +48,6 @@ async def search_weather(lat: float, lon: float, month: int):
         weather_object = HistoricalWeather.from_api_response(lat, lon, month, save_year, results)
         await save_weather(weather_object)
         print("NOW IN CACHE")
+        logger.info("Weather successfully cached for %s,%s,%s", lat, lon, month)
 
     return weather_object

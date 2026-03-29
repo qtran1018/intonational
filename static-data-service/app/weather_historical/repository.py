@@ -5,12 +5,16 @@ from datetime import datetime, timezone
 historical_weather = db["historical_weather"]
 
 async def query_weather(lat: float, lon: float, month: int):
-    return await historical_weather.find_one(
+    results = await historical_weather.find_one(
         {
             "location.latitude": lat,
             "location.longitude": lon,
             "time_period.month": month
-        })      
+        })
+    if not results:
+        return None
+    results.pop("_id", None)
+    return HistoricalWeather.model_validate(results)
 
 async def save_weather(weather_obj: HistoricalWeather):
     document = weather_obj.model_dump()
