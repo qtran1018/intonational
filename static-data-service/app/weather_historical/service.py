@@ -10,16 +10,14 @@ logger = logging.getLogger("weather_historical")
 async def search_weather(lat: float, lon: float, month: int):
     #Should not be an issue. Frontend should limit choices
     if not 1 <= month <= 12:
-        raise ValueError("month must be between 1 and 12")
+        raise ValueError("Month must be between 1 and 12")
 
     cached = await query_weather(lat, lon, month)
 
     if cached:
-        print("IN CACHE")
         logger.info("Weather cache HIT for %s,%s,%s", lat, lon, month)
         return cached
     else:
-        print("NOT IN CACHE")
         logger.info("Weather cache MISS for %s, %s ,%s", lat, lon, month)
         current_year = date.today().year
         current_month = date.today().month
@@ -47,7 +45,6 @@ async def search_weather(lat: float, lon: float, month: int):
 
         weather_object = HistoricalWeather.from_api_response(lat, lon, month, save_year, results)
         await save_weather(weather_object)
-        print("NOW IN CACHE")
         logger.info("Weather successfully cached for %s,%s,%s", lat, lon, month)
 
     return weather_object
