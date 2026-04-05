@@ -1,0 +1,261 @@
+﻿Country Code (FIPS),Country Name,Region Code,ISO Country Code
+US,United States,XUS,US
+CA,Canada,6CA,CA
+MX,Mexico,748,MX
+AF,Afghanistan,8,AF
+AL,Albania,24,AL
+AG,Algeria,1,DZ
+AN,Andorra,24,AD
+AO,Angola,1,AO
+AV,Anguilla,941,AI
+AY,Antarctica,99,AQ
+AC,Antigua And Barbuda,941,AG
+AR,Argentina,805,AR
+AM,Armenia,8,AM
+AA,Aruba,941,NL
+AT,Ashmore and Cartier Islands,96,AU
+AS,Australia,96,AU
+AU,Austria,24,AT
+AJ,Azerbaijan,8,AZ
+BF,"Bahamas, The",909,BS
+BA,Bahrain,8,BH
+BG,Bangladesh,8,BD
+BB,Barbados,941,BB
+BS,Bassas da India,1,FR
+BO,Belarus,24,BY
+BE,Belgium,24,BE
+BH,Belize,712,BZ
+BN,Benin,1,BJ
+BD,Bermuda,197,BM
+BT,Bhutan,8,BT
+BL,Bolivia,813,BO
+BK,Bosnia and Herzegovina,24,BA
+BC,Botswana,1,BW
+BV,Bouvet Island,99,BV
+BR,Brazil,810,BR
+IO,British Indian Ocean Territory,96,IO
+VI,British Virgin Islands,941,VG
+BX,Brunei,8,BN
+BU,Bulgaria,24,BG
+UV,Burkina,1,BF
+BM,Burma,8,MM
+BY,Burundi,1,BI
+CB,Cambodia,8,KH
+CM,Cameroon,1,CM
+CV,Cape Verde,1,CV
+CJ,Cayman Islands,937,KY
+CT,Central African Republic,1,CF
+CD,Chad,1,TD
+CI,Chile,815,CL
+CH,China,8,CN
+KT,Christmas Island,8,CX
+IP,Clipperton Island,96,FR
+CK,Cocos (Keeling) Islands,8,CC
+CO,Colombia,816,CO
+CN,Comoros,1,KM
+CG,Congo,1,CD
+CW,Cook Islands,96,CK
+CR,Coral Sea Islands,96,AU
+CS,Costa Rica,719,CR
+IV,Cote D'Ivoire,1,CI
+HR,Croatia,24,HR
+CU,Cuba,920,CU
+CY,Cyprus,24,CY
+EZ,Czech Republic,24,CZ
+DA,Denmark,24,DK
+DJ,Djibouti,1,DJ
+DO,Dominica,941,DM
+DR,Dominican Republic,931,DO
+TT,East Timor,8,TL
+EC,Ecuador,823,EC
+EG,Egypt,1,EG
+ES,El Salvador,778,SV
+EK,Equatorial Guinea,1,GQ
+ER,Eritrea,1,ER
+EN,Estonia,24,EE
+ET,Ethiopia,1,ET
+24,EUR,24,
+EU,Europa Island,1,FR
+FK,Falkland Islands (Islas Malvinas),805,FK
+FO,Faroe Islands,24,FO
+FM,Federated States Of Micronesia,96,FM
+FJ,Fiji,96,FJ
+FI,Finland,24,FI
+FR,France,24,FR
+FG,French Guiana,830,FR
+FP,French Polynesia,96,FR
+FS,French Southern and Antarctic Lands,99,TF
+GB,Gabon,1,GA
+GA,"Gambia, The",1,GM
+GZ,Gaza Strip,8,PS
+GG,Georgia,8,GE
+GM,Germany,24,DE
+GH,Ghana,1,GH
+GI,Gibraltar,24,GI
+GO,Glorioso Islands,1,FR
+GR,Greece,24,GR
+GL,Greenland,28,GL
+GJ,Grenada,941,GD
+GP,Guadeloupe,941,FR
+GT,Guatemala,729,GT
+GK,Guernsey,24,GG
+GV,Guinea,1,GN
+PU,Guinea-Bissau,1,GW
+GY,Guyana,830,GY
+HA,Haiti,931,HT
+HM,Heard Island and Mcdonald Islands,99,HM
+HO,Honduras,732,HN
+HK,Hong Kong,8,CN
+HU,Hungary,24,HU
+IC,Iceland,24,IS
+IN,India,8,IN
+ID,Indonesia,8,ID
+IR,Iran,8,IR
+IZ,Iraq,8,IQ
+EI,Ireland,24,IE
+IS,Israel,8,IL
+IT,Italy,24,IT
+JM,Jamaica,937,JM
+JN,Jan Mayen,24,NO
+JA,Japan,8,JP
+JE,Jersey,24,JE
+JQ,Johnston Atoll,96,US
+JO,Jordan,8,JO
+JU,Juan de Nova Island,1,FR
+KZ,Kazakhstan,8,KZ
+KE,Kenya,1,KE
+KR,Kiribati,96,KI
+KU,Kuwait,8,KW
+KG,Kyrgyzstan,8,KG
+41,LANT,941,
+LA,Laos,8,LA
+LG,Latvia,24,LV
+LE,Lebanon,8,LB
+LT,Lesotho,1,LS
+LI,Liberia,1,LR
+LY,Libya,1,LY
+LS,Liechtenstein,24,LI
+LH,Lithuania,24,LT
+LU,Luxembourg,24,LU
+MC,Macau,8,CN
+MK,Macedonia,24,MK
+MA,Madagascar,1,MG
+MI,Malawi,1,MW
+MY,Malaysia,8,MY
+MV,Maldives,8,MV
+ML,Mali,1,ML
+MT,Malta,24,MT
+IM,"Man, Isle of",24,IM
+RM,Marshall Islands,96,MH
+MB,Martinique,941,FR
+MR,Mauritania,1,MR
+MP,Mauritius,1,MU
+MF,Mayotte,1,FR
+MD,Moldova,24,MD
+MN,Monaco,24,MC
+MG,Mongolia,8,MN
+MJ,Montenegro,24,ME
+MH,Montserrat,941,MS
+MO,Morocco,1,MA
+MZ,Mozambique,1,MZ
+WA,Namibia,1,NA
+NR,Nauru,96,NR
+NP,Nepal,8,NP
+NL,Netherlands,24,NL
+NT,Netherlands Antilles,941,NL
+NC,New Caledonia,24,FR
+NZ,New Zealand,96,NZ
+NU,Nicaragua,762,NI
+NG,Niger,1,NE
+NI,Nigeria,1,NG
+NE,Niue,96,NU
+NF,Norfolk Island,96,NF
+KN,North Korea,8,KP
+CQ,Northern Mariana Islands,96,US
+NO,Norway,24,NO
+96,OCEANIA,96,
+MU,Oman,8,OM
+PK,Pakistan,8,PK
+WE,Palestine,8,PS
+PM,Panama,770,PA
+PP,Papua New Guinea,96,PG
+PF,Paracel Islands,8,CN
+PA,Paraguay,871,PY
+PE,Peru,873,PE
+RP,Philippines,96,PH
+PC,Pitcairn Islands,96,PN
+PL,Poland,24,PL
+PO,Portugal,24,PT
+QA,Qatar,8,QA
+CF,Republic of the Congo,1,CG
+RE,Reunion,1,FR
+RO,Romania,24,RO
+RS,Russia,98,RU
+RW,Rwanda,1,RW
+SM,San Marino,24,SM
+TP,Sao Tome and Principe,1,ST
+SA,Saudi Arabia,8,SA
+SG,Senegal,1,SN
+RB,Serbia,24,RS
+YI,Serbia and Montenegro,24,CS
+SE,Seychelles,1,SC
+SL,Sierra Leone,1,SL
+SN,Singapore,8,SG
+LO,Slovakia,24,SK
+SI,Slovenia,24,SI
+BP,Solomon Islands,96,SB
+SO,Somalia,1,SO
+SF,South Africa,1,ZA
+SX,South Georgia and The South Sandwich Islands,99,GS
+KS,South Korea,8,KR
+OD,South Sudan,1,SS
+SP,Spain,24,ES
+PG,Spratly Islands,96,CN
+CE,Sri Lanka,8,LK
+SH,St. Helena,1,SH
+SC,St. Kitts and Nevis,941,KN
+ST,St. Lucia,941,LC
+SB,St. Pierre And Miquelon,657,FR
+VC,St. Vincent and The Grenadines,941,VC
+SU,Sudan,1,SD
+NS,Suriname,830,SR
+SV,Svalbard,24,NO
+WZ,Swaziland,1,SZ
+SW,Sweden,24,SE
+SZ,Switzerland,24,CH
+SY,Syria,8,SY
+TW,Taiwan,8,TW
+TI,Tajikistan,8,TJ
+TZ,Tanzania,1,TZ
+TH,Thailand,8,TH
+TO,Togo,1,TG
+TL,Tokelau,96,TK
+TN,Tonga,96,TO
+TD,Trinidad And Tobago,941,TT
+TE,Tromelin Island,1,FR
+PS,Trust Territory of the Pacific Islands (Palau),96,PW
+TS,Tunisia,1,TN
+TU,Turkey,24,TR
+TX,Turkmenistan,8,TM
+TK,Turks and Caicos Islands,909,TC
+TV,Tuvalu,96,TV
+UG,Uganda,1,UG
+UP,Ukraine,24,UA
+AE,United Arab Emirates,8,AE
+UK,United Kingdom,24,GB
+0,UNKNOWN,0,ZZ
+UY,Uruguay,884,UY
+UZ,Uzbekistan,8,UZ
+NH,Vanuatu,96,VU
+VT,Vatican City,24,VA
+VE,Venezuela,886,VE
+VM,Vietnam,8,VN
+WF,Wallis and Futuna,96,FR
+WI,Western Sahara,1,EH
+WS,Western Samoa,96,WS
+YM,Yemen,8,YE
+ZA,Zambia,1,ZM
+ZI,Zimbabwe,1,ZW
+1,AFR,1,
+8,ASIA,8,
+94,AT SEA,94,AA
