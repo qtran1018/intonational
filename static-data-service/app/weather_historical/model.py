@@ -64,7 +64,7 @@ class HistoricalWeather(BaseModel):
     weather_data: WeatherData
 
     @classmethod
-    def from_api_response(cls, lat, lon, month, year, raw_data) -> HistoricalWeather:
+    def from_api_response(cls, lat: float, lon: float, month: int, year: int, raw_data: dict) -> HistoricalWeather:
         return cls(
             meta_data=MetaData(),
             location=Location(latitude=lat, longitude=lon),
