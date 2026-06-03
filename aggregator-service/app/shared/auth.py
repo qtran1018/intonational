@@ -1,9 +1,10 @@
+import os
 import jwt
 from functools import lru_cache
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-KEYCLOAK_ISSUER = "http://localhost:8180/realms/travel-platform"
+KEYCLOAK_ISSUER = os.getenv("KEYCLOAK_ISSUER", "http://localhost:8180/realms/travel-platform")
 
 _bearer = HTTPBearer()
 
